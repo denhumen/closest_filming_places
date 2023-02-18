@@ -19,10 +19,10 @@ To use this script, follow these steps:
  * Run the script using the following command:
 
 ```css
-python map_with_closest_places.py --lat <latitude> --lon <longitude>
+python main.py <latitude> <longitude> <path_to_dataset>
 ```
 
- * Replace <latitude> and <longitude> with the latitude and longitude of the input place, respectively.
+ * Replace <latitude>, <longitude>, <path_to_dataset> with the latitude and longitude of the input place and the path to your dataset, where script will get filming positions(the example file you can see directly in the repository and it must have .list extension), respectively.
 
 The script will generate a map in your default web browser showing the closest places to the input location.
 
@@ -30,11 +30,11 @@ The script will generate a map in your default web browser showing the closest p
  
 The script reads the database configuration from a config.json file. The following properties can be configured:
 
-database: the name of the database file.
-table: the name of the table containing the places.
-name_column: the name of the column containing the name of the place.
-lat_column: the name of the column containing the latitude of the place.
-lon_column: the name of the column containing the longitude of the place.
+ - **database**: the name of the database file.
+ - **table**: the name of the table containing the places.
+ - **name_column**: the name of the column containing the name of the place.
+ - **lat_column**: the name of the column containing the latitude of the place.
+ - **lon_column**: the name of the column containing the longitude of the place.
 
  
 ## Contributing
