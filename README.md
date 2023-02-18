@@ -26,7 +26,8 @@ python map_with_closest_places.py --lat <latitude> --lon <longitude>
 
 The script will generate a map in your default web browser showing the closest places to the input location.
 
-Configuration
+## Configuration
+ 
 The script reads the database configuration from a config.json file. The following properties can be configured:
 
 database: the name of the database file.
@@ -34,10 +35,12 @@ table: the name of the table containing the places.
 name_column: the name of the column containing the name of the place.
 lat_column: the name of the column containing the latitude of the place.
 lon_column: the name of the column containing the longitude of the place.
-Contributing
+
+ 
+## Contributing
 If you find a bug or have a feature request, please create an issue on the GitHub repository.
 
 If you would like to contribute to the project, please fork the repository and create a pull request with your changes.
 
-License
+## License
 This script is released under the MIT License. See the LICENSE file for more information.
