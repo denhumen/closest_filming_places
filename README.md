@@ -33,7 +33,8 @@ Using folowing command in the cmd
 python main.py <longitude> <path_to_dataset>
 ```
 We get this map:
- 
+ ![1234567](https://user-images.githubusercontent.com/116521940/219872675-8f1a6626-d094-4224-801e-fb392b5c5e8a.png)
+
 ## Configuration
  
 The script reads the database configuration from a config.json file. The following properties can be configured:
