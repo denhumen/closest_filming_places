@@ -33,7 +33,6 @@ Using folowing command in the cmd
 python main.py <longitude> <path_to_dataset>
 ```
 We get this map:
-![1234567](https://user-images.githubusercontent.com/116521940/219872498-f2692087-0544-477d-872a-b19f39e6d978.png)
  
 ## Configuration
  
