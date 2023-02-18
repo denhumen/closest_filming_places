@@ -1,27 +1,28 @@
-# closest_filming_places
+# Map with closest filming places
 This is a Python script that creates a map with the closest places from a database to the input place. The input latitude and longitude are used to search for the nearest places in the database, and these places are displayed on a map using the Folium library.
 
 Prerequisites
 In order to use this script, you will need to have the following installed:
 
-Python 3
-Pandas
-Folium
-Usage
+ - Python3
+ - Folium
+
+## Usage
 To use this script, follow these steps:
 
-Clone the repository to your local machine.
+ * Clone the repository to your local machine.
 
-Open a terminal and navigate to the directory where the repository is located.
+ * Open a terminal and navigate to the directory where the repository is located.
 
-Ensure that you have the required dependencies installed (see Prerequisites).
+ * Ensure that you have the required dependencies installed (see Prerequisites).
 
-Run the script using the following command:
+ * Run the script using the following command:
 
-css
-Copy code
+```css
 python map_with_closest_places.py --lat <latitude> --lon <longitude>
-Replace <latitude> and <longitude> with the latitude and longitude of the input place, respectively.
+```
+
+ * Replace <latitude> and <longitude> with the latitude and longitude of the input place, respectively.
 
 The script will generate a map in your default web browser showing the closest places to the input location.
 
