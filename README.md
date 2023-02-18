@@ -34,6 +34,7 @@ python main.py <longitude> <path_to_dataset>
 ```
 We get this map:
 
+ 
 ## Configuration
  
 The script reads the database configuration from a config.json file. The following properties can be configured:
