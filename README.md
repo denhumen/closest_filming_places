@@ -34,17 +34,6 @@ python main.py <longitude> <path_to_dataset>
 ```
 We get this map:
  ![1234567](https://user-images.githubusercontent.com/116521940/219872675-8f1a6626-d094-4224-801e-fb392b5c5e8a.png)
-
-## Configuration
- 
-The script reads the database configuration from a config.json file. The following properties can be configured:
-
- - **database**: the name of the database file.
- - **table**: the name of the table containing the places.
- - **name_column**: the name of the column containing the name of the place.
- - **lat_column**: the name of the column containing the latitude of the place.
- - **lon_column**: the name of the column containing the longitude of the place.
-
  
 ## Contributing
 If you find a bug or have a feature request, please create an issue on the GitHub repository.
