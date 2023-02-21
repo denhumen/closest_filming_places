@@ -6,7 +6,6 @@ the closest filming places
 """
 import argparse
 from functools import lru_cache
-from math import radians, cos, sin, asin, sqrt
 import os
 import re
 from typing import List, Tuple
