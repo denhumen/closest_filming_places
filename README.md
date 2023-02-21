@@ -17,13 +17,13 @@ To use this script, follow these steps:
 
  3. Ensure that you have the required dependencies installed (see Prerequisites).
 
- 4. Run the script using the following command:
+ 4. Run the script main.py using the following command:
 
 ```css
 python main.py <latitude> <longitude> <path_to_dataset>
 ```
 
- 5. Replace <latitude>, <longitude>, <path_to_dataset> with the latitude and longitude of the input place and the path to your dataset, where script will get filming positions(the example file you can see directly in the repository and it must have .list extension), respectively.
+ 5. Replace <latitude>, <longitude>, <path_to_dataset> with the latitude and longitude of the input place and the path to your dataset, where script will get filming positions(the example file you can see directly in the repository and it must have .list extension), respectively.(as path_to_dataset you can use locations.list from this repo, there are given more than 10k filming locations)
 
 The script will generate a map in your default web browser showing the closest places to the input location.
 
