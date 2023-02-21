@@ -30,7 +30,10 @@ def read_list(path: str) -> List[str]:
         films: List[str] - list of films and filming places
     """
     with open(path, mode='r', encoding='latin1', errors='ignore') as file:
-        data = file.read().splitlines()[0:10001]
+        data = file.read().splitlines()
+    if len(data) > 10000:
+        data = data[0:10000]
+    print(len(data))
     years = ["(" + str(year) + ")" for year in range(1970, 2023)]
     films = []
     for line in data:
