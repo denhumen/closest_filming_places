@@ -130,7 +130,6 @@ def get_distances_between_enter_point_and_film_points(enter_coords: Tuple[int, i
                 continue
         except Exception:
             continue
-        #distance = haversine(enter_coords[0], enter_coords[1], coords[0], coords[1])
         distance = find_distance_between_two_places(enter_coords, coords)
         if distance < 1000:
             dist_films.append((film[0], coords, distance))
