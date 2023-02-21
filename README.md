@@ -6,6 +6,7 @@ In order to use this script, you will need to have the following installed:
 
  - Python3
  - Folium
+ - Geopy
 
 ## Usage
 To use this script, follow these steps:
