@@ -4,18 +4,19 @@ to create html map-file
 with input location and
 the closest filming places
 """
-import folium as fl
-from typing import List, Tuple
-from geopy.geocoders import Nominatim
-from geopy.distance import geodesic
 import argparse
+from functools import lru_cache
+from math import radians, cos, sin, asin, sqrt
+import os
+from typing import List, Tuple
+import folium as fl
+from geopy.distance import geodesic
+from geopy.geocoders import Nominatim
 
 parser = argparse.ArgumentParser(description="Find the closest filming places")
 parser.add_argument('latitude', type=str, help="Custom latitude")
 parser.add_argument('longitude', type=str, help="Custom longitude")
 parser.add_argument('path', type=str, help="Path to the dataset")
-group = parser.add_mutually_exclusive_group()
-group.add_argument('--open', action='store_true', help='Open map file')
 args = parser.parse_args()
 
 def read_list(path: str) -> List[str]:
@@ -28,8 +29,18 @@ def read_list(path: str) -> List[str]:
     Returns:
         films: List[str] - list of films and filming places
     """
-    pass
+    with open(path, mode='r', encoding='latin1', errors='ignore') as file:
+        data = file.read().splitlines()
+    years = ["(" + str(year) + ")" for year in range(1970, 2023)]
+    films = []
+    for line in data:
+        if any(year in line for year in years):
+            films.append(line)
+    for index, film in enumerate(films):
+        films[index] = [x for x in film.split('\t') if x != '']
+    return films
 
+@lru_cache(maxsize=None)
 def get_cords_of_the_place(city: str) -> Tuple[int, int]:
     """
     Function finds map cordinates
@@ -41,7 +52,12 @@ def get_cords_of_the_place(city: str) -> Tuple[int, int]:
         location: Tuple[int, int] - tuple with cords
     of the city, First - latitude, second - longitude
     """
-    pass
+    try:
+        geolocator = Nominatim(user_agent="Maps.app")
+        location = geolocator.geocode(city)
+        return location.latitude, location.longitude
+    except Exception:
+        return None
 
 def create_map(x: int, y: int, films: List[Tuple[str, Tuple[int, int], int]]):
     """
@@ -52,7 +68,21 @@ def create_map(x: int, y: int, films: List[Tuple[str, Tuple[int, int], int]]):
         x: int - latitude
         y: int - longitude
     """
-    pass
+    try:
+        map = fl.Map(location=[x, y], zoom_start=7, tiles="Stamen Toner")
+        map.add_child(fl.Marker(location=[x, y],
+                            popup="Your input coords",
+                            icon=fl.Icon(color='lightgray', icon='home', prefix='fa')))
+        for film in films:
+            name, coords, _ = film
+            map.add_child(fl.Marker(location=[coords[0], coords[1]],
+                            popup=name,
+                            icon=fl.Icon(color='red', icon='film', prefix='fa')))
+        map_name = "Map.html"
+        map.save(map_name)
+        os.startfile(os.getcwd() + '\\' + map_name)
+    except ZeroDivisionError:
+        print("Something went wrong")
 
 def find_distance_between_two_places(cords1: Tuple[int, int],
                                      cords2: Tuple[int, int]) -> int:
@@ -67,7 +97,7 @@ def find_distance_between_two_places(cords1: Tuple[int, int],
     Returns:
         distance: int - distance between two points
     """
-    pass
+    return geodesic(cords1, cords2).km
 
 def get_distances_between_enter_point_and_film_points(enter_coords: Tuple[int, int], films: List[List[str]]):
     """
@@ -82,4 +112,32 @@ def get_distances_between_enter_point_and_film_points(enter_coords: Tuple[int, i
         dist_films: List[Tuple[str, Tuple[int, int], int]] - list with film
     distances, names and coords
     """
-    pass
+    dist_films = []
+    used_locations = set()
+    or_films = []
+    for film in films:
+        if film[1].strip() in used_locations:
+            continue
+        or_films.append(film)
+        used_locations.add(film[1].strip())
+    counter = 0
+    for film in or_films:
+        try:
+            coords = get_cords_of_the_place(film[1].strip())
+            if coords == None:
+                continue
+        except Exception:
+            continue
+        #distance = haversine(enter_coords[0], enter_coords[1], coords[0], coords[1])
+        distance = find_distance_between_two_places(enter_coords, coords)
+        if distance < 1000:
+            dist_films.append((film[0], coords, distance))
+            if len(dist_films) >= 10:
+                break
+    return dist_films
+
+if __name__ == "__main__":
+    enter_coords = (args.latitude, args.longitude)
+    films = read_list(args.path)
+    dist_films = get_distances_between_enter_point_and_film_points(enter_coords, films)
+    create_map(args.latitude, args.longitude, dist_films)
