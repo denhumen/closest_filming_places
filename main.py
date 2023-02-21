@@ -8,6 +8,7 @@ import argparse
 from functools import lru_cache
 import os
 import re
+import time
 from typing import List, Tuple
 import folium as fl
 from geopy.distance import geodesic
@@ -83,7 +84,7 @@ def create_map(x: int, y: int, films: List[Tuple[str, Tuple[int, int], int]]):
         map_name = "Map.html"
         map.save(map_name)
         os.startfile(os.getcwd() + '\\' + map_name)
-    except ZeroDivisionError:
+    except Exception:
         print("Something went wrong")
 
 def find_distance_between_two_places(cords1: Tuple[int, int],
@@ -122,7 +123,7 @@ def get_distances_between_enter_point_and_film_points(enter_coords: Tuple[int, i
             continue
         or_films.append(film)
         used_locations.add(film[1].strip())
-    counter = 0
+    start_time = time.time()
     for film in or_films:
         try:
             coords = get_cords_of_the_place(film[1].strip())
@@ -131,7 +132,10 @@ def get_distances_between_enter_point_and_film_points(enter_coords: Tuple[int, i
         except Exception:
             continue
         distance = find_distance_between_two_places(enter_coords, coords)
-        if distance < 1000:
+        radius = 2000
+        if time.time() - start_time > 120:
+            radius = 10000
+        if distance <= radius:
             dist_films.append((film[0], coords, distance))
             if len(dist_films) >= 10:
                 break
