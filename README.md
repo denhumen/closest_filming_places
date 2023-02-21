@@ -6,6 +6,7 @@ In order to use this script, you will need to have the following installed:
 
  - Python3
  - Folium
+ - Geopy
 
 ## Usage
 To use this script, follow these steps:
@@ -16,13 +17,13 @@ To use this script, follow these steps:
 
  3. Ensure that you have the required dependencies installed (see Prerequisites).
 
- 4. Run the script using the following command:
+ 4. Run the script main.py using the following command:
 
 ```css
 python main.py <latitude> <longitude> <path_to_dataset>
 ```
 
- 5. Replace <latitude>, <longitude>, <path_to_dataset> with the latitude and longitude of the input place and the path to your dataset, where script will get filming positions(the example file you can see directly in the repository and it must have .list extension), respectively.
+ 5. Replace <latitude>, <longitude>, <path_to_dataset> with the latitude and longitude of the input place and the path to your dataset, where script will get filming positions(the example file you can see directly in the repository and it must have .list extension), respectively.(as path_to_dataset you can use locations.list from this repo, there are given more than 10k filming locations)
 
 The script will generate a map in your default web browser showing the closest places to the input location.
 
@@ -30,21 +31,11 @@ The script will generate a map in your default web browser showing the closest p
 
 Using folowing command in the cmd
 ```css
-python main.py <longitude> <path_to_dataset>
+python main.py 53.5 9.9 locations.list
 ```
 We get this map:
+ ![for git](https://user-images.githubusercontent.com/116521940/220355003-0b99f243-ca68-4a52-99fa-1fb4f1e228d1.png)
 
-## Configuration
- 
-The script reads the database configuration from a config.json file. The following properties can be configured:
-
- - **database**: the name of the database file.
- - **table**: the name of the table containing the places.
- - **name_column**: the name of the column containing the name of the place.
- - **lat_column**: the name of the column containing the latitude of the place.
- - **lon_column**: the name of the column containing the longitude of the place.
-
- 
 ## Contributing
 If you find a bug or have a feature request, please create an issue on the GitHub repository.
 
