@@ -8,6 +8,7 @@ import argparse
 from functools import lru_cache
 from math import radians, cos, sin, asin, sqrt
 import os
+import re
 from typing import List, Tuple
 import folium as fl
 from geopy.distance import geodesic
@@ -78,7 +79,7 @@ def create_map(x: int, y: int, films: List[Tuple[str, Tuple[int, int], int]]):
         for film in films:
             name, coords, _ = film
             map.add_child(fl.Marker(location=[coords[0], coords[1]],
-                            popup=name,
+                            popup=re.findall('".+"', name)[0][1:-1],
                             icon=fl.Icon(color='red', icon='film', prefix='fa')))
         map_name = "Map.html"
         map.save(map_name)
