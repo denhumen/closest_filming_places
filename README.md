@@ -31,11 +31,11 @@ The script will generate a map in your default web browser showing the closest p
 
 Using folowing command in the cmd
 ```css
-python main.py <longitude> <path_to_dataset>
+python main.py 53.5 9.9 locations.list
 ```
 We get this map:
- ![1234567](https://user-images.githubusercontent.com/116521940/219872675-8f1a6626-d094-4224-801e-fb392b5c5e8a.png)
- 
+ ![for git](https://user-images.githubusercontent.com/116521940/220355003-0b99f243-ca68-4a52-99fa-1fb4f1e228d1.png)
+
 ## Contributing
 If you find a bug or have a feature request, please create an issue on the GitHub repository.
 
