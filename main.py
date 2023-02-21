@@ -33,7 +33,6 @@ def read_list(path: str) -> List[str]:
         data = file.read().splitlines()
     if len(data) > 10000:
         data = data[0:10000]
-    print(len(data))
     years = ["(" + str(year) + ")" for year in range(1970, 2023)]
     films = []
     for line in data:
